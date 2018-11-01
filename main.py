@@ -46,3 +46,29 @@ search_queries = [
 
 for file in listoffiles:
     test_trie(file, search_queries)
+
+
+# Test LRU
+from libta.lru import LRUCache
+
+lrucache = LRUCache(5)
+lrucache.add_item(1, 1)
+lrucache.add_item(10, 15)
+lrucache.add_item(15, 10)
+lrucache.add_item(10, 16)
+lrucache.add_item(12, 15)
+lrucache.add_item(18, 10)
+lrucache.add_item(13, 16)
+lrucache.add_item(20, 16)
+lrucache.add_item(22, 16)
+lrucache.add_item(23, 16)
+
+lrucache.print_all_items()
+
+print('get value for 15', lrucache.get(15))
+
+print('get value for 18', lrucache.get(18))
+lrucache.print_all_items()
+
+print('get value for 20', lrucache.get(20))
+lrucache.print_all_items()
