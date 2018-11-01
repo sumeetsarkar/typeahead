@@ -13,7 +13,6 @@ class LRUCache:
             raise ValueError('LRU size cannot be less than 1')
         self.__size = size
         self.__dict = {}
-        self.__cache = None
         self.__front = None
         self.__end = None
 
