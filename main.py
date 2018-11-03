@@ -51,6 +51,22 @@ for file in listoffiles:
 # Test LRU
 from libta.lru import LRUCache
 
+def test_lru(file):
+    lrucache = LRUCache(10)
+    with open(file) as f:
+        lines = f.read().splitlines()
+        for i in range(len(lines)):
+            lrucache.add_item(i, lines[i])
+        print('\n\nPrinting LRU state...\n')
+        lrucache.print_all_items()
+
+
+for f in listoffiles:
+    test_lru(f)
+
+
+# Simple Test
+print('\n\nPrinting LRU state...\n')
 lrucache = LRUCache(5)
 lrucache.add_item(1, 1)
 lrucache.add_item(10, 15)
