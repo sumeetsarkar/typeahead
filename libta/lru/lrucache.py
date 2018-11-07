@@ -47,20 +47,19 @@ class LRUCache:
         else:
             self.__end = cacheEntry.prevnode
 
-    def add_item(self, key, data):
-        itemfound = self.__dict.get(key, None)
+    def add_item(self, key, data = None):
+        if data is None:
+            data = key
+        itemfound = self.get(key)
+        if itemfound:
+            itemfound.data = data
+            return itemfound
         cacheEntry = CacheEntry(key, data)
-        if itemfound is None:
-            if len(self.__dict) == self.__size:
-                self.__dict.pop(self.__end.key, None)
-                self.remove_item(self.__end)
-            self.__move_item_to_front(cacheEntry)
-            self.__dict[key] = cacheEntry
-        else:
-            self.remove_item(itemfound)
-            self.__dict.pop(itemfound.key, None)
-            self.__move_item_to_front(cacheEntry)
-            self.__dict[key] = cacheEntry
+        if len(self.__dict) == self.__size:
+            self.__dict.pop(self.__end.key, None)
+            self.remove_item(self.__end)
+        self.__move_item_to_front(cacheEntry)
+        self.__dict[key] = cacheEntry
 
     def print_all_items(self):
         temp = self.__front

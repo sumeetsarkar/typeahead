@@ -17,5 +17,9 @@ class CacheEntry:
     def data(self):
         return self.__data
 
+    @data.setter
+    def data(self, value):
+        self.__data = value
+
     def __str__(self):
         return '[{}, {}]'.format(self.key, self.data)

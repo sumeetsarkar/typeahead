@@ -55,8 +55,8 @@ def test_lru(file):
     lrucache = LRUCache(10)
     with open(file) as f:
         lines = f.read().splitlines()
-        for i in range(len(lines)):
-            lrucache.add_item(i, lines[i])
+        for line in lines:
+            lrucache.add_item(line)
         print('\n\nPrinting LRU state...\n')
         lrucache.print_all_items()
 
